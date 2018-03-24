@@ -4,18 +4,17 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
   render() {
-    console.log(this.props.book.imageLinks.thumbnail)
     return (
       <div>
         <div className="book">
           <div className="book-top">
             <div className="book-cover" style={{
-              width: 128, height: 193, 
+              width: 128, height: 193,
               backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`
             }}>
             </div>
             <div className="book-shelf-changer">
-              <select>
+              <select onChange={(event) => this.props.moveBook(this.props.book, event.target.value)}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
@@ -26,7 +25,7 @@ class Book extends Component {
           </div>
           <div className="book-title">{this.props.book.title}</div>
           {this.props.book.authors.map((author) => (
-            <div className="book-authors">{author}</div>
+            <div key={author} className="book-authors">{author}</div>
           ))}
         </div>
       </div>

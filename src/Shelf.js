@@ -9,7 +9,7 @@ class Shelf extends Component {
   }
 
   render() {
-    console.log(this.props.books)
+    // console.log(this.props.books)
     return (
       <div className="bookshelf">
         <h2 className="bookshelf-title">{this.props.name}</h2>
@@ -19,6 +19,7 @@ class Shelf extends Component {
               <li key={book.id}>
                 <Book
                   book={book}
+                  moveBook={this.props.moveBook}
                 />
               </li>
             ))}
