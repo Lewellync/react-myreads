@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Shelf from './Shelf'
 import Search from './Search'
@@ -24,24 +25,32 @@ class BooksApp extends Component {
           <Search />
         )} />
         <Route exact path="/" render={() => (
-          <div className="list-books">
-            <div className="list-books-title">
-              <h1>MyReads</h1>
+          <div>
+            <div>
+              <Link
+                to="/search"
+                className='search-book'
+              >Search Books</Link>
             </div>
-            <div className="list-books-content">
-              <Shelf
-                name="Currently Reading"
-                books={this.state.books}
-              />
-              <Shelf
-                name="Want to Read"
-              />
-              <Shelf
-                name="Read"
-              />
-            </div>
-            <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+            <div className="list-books">
+              <div className="list-books-title">
+                <h1>MyReads</h1>
+              </div>
+              <div className="list-books-content">
+                <Shelf
+                  name="Currently Reading"
+                  books={this.state.books}
+                />
+                <Shelf
+                  name="Want to Read"
+                />
+                <Shelf
+                  name="Read"
+                />
+              </div>
+              <div className="open-search">
+                <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+              </div>
             </div>
           </div>
         )} />
