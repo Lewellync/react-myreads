@@ -26,12 +26,7 @@ class BooksApp extends Component {
         )} />
         <Route exact path="/" render={() => (
           <div>
-            <div>
-              <Link
-                to="/search"
-                className='search-book'
-              >Search Books</Link>
-            </div>
+
             <div className="list-books">
               <div className="list-books-title">
                 <h1>MyReads</h1>
@@ -49,7 +44,10 @@ class BooksApp extends Component {
                 />
               </div>
               <div className="open-search">
-                <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                <Link
+                  to="/search"
+                  className='search-book'
+                >Search Books</Link>
               </div>
             </div>
           </div>
