@@ -332,11 +332,11 @@ class BooksApp extends Component {
    ]
   }
 
-  // componentDidMount() {
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({ books })
-  //   })
-  // }
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
 
   render() {
     // console.log(JSON.stringify(this.state))
