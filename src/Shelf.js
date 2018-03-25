@@ -15,6 +15,10 @@ class Shelf extends Component {
               <li key={book.id}>
                 <Book
                   book={book}
+                  title={book.title}
+                  shelf={book.shelf}
+                  authors={book.authors || []}
+                  thumbnail={(book.imageLinks && book.imageLinks.thumbnail) || ""}
                   moveBook={this.props.moveBook}
                 />
               </li>

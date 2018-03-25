@@ -23,7 +23,6 @@ class BooksApp extends Component {
       let newBooks = this.state.books.map((oldBook) => (
         oldBook.title === book.title ? { ...oldBook, "shelf": shelf } : oldBook
       ))
-      console.log(newBooks)
       this.setState({ books: newBooks })
     })
   }

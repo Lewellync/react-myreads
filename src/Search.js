@@ -15,19 +15,17 @@ class Search extends Component {
     this.setState({ query })
     if (query) {
       BooksAPI.search(query).then((books) => {
-        this.setState({ books })
+        books.error ? this.setState({ books: [] }) : this.setState({ books })
       })
     }
   }
 
   render() {
-
     const { query } = this.state
 
     let showingBooks
     showingBooks = query ? this.state.books : []
-
-
+    console.log(showingBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -52,6 +50,10 @@ class Search extends Component {
               <li key={book.id}>
                 <Book
                   book={book}
+                  title={book.title}
+                  shelf={book.shelf}
+                  authors={book.authors || []}
+                  thumbnail={(book.imageLinks && book.imageLinks.thumbnail) || ""}
                   moveBook={this.props.moveBook}
                 />
               </li>
