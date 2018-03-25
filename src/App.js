@@ -29,11 +29,12 @@ class BooksApp extends Component {
   }
 
   render() {
-    // console.log(JSON.stringify(this.state))
     return (
       <div className="app">
         <Route exact path="/search" render={() => (
-          <Search />
+          <Search 
+            moveBook={this.moveBook}
+          />
         )} />
         <Route exact path="/" render={() => (
           <div>

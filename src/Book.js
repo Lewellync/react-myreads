@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
   render() {
-    const shelf = this.props.book.shelf;
+    const { shelf } = this.props.book;
 
     return (
       <div>
@@ -16,19 +16,19 @@ class Book extends Component {
             }}>
             </div>
             <div className="book-shelf-changer">
-              <select onChange={(event) => this.props.moveBook(this.props.book, event.target.value)}>
+              <select value={shelf} onChange={(event) => this.props.moveBook(this.props.book, event.target.value)}>
                 <option value="none" disabled>Move to...</option>
-                <option selected={shelf === "currentlyReading"} value="currentlyReading">Currently Reading</option>
-                <option selected={shelf === "wantToRead"} value="wantToRead">Want to Read</option>
-                <option selected={shelf === "read"} value="read">Read</option>
+                <option value="currentlyReading">Currently Reading</option>
+                <option value="wantToRead">Want to Read</option>
+                <option value="read">Read</option>
                 <option value="none">None</option>
               </select>
             </div>
           </div>
           <div className="book-title">{this.props.book.title}</div>
-          {this.props.book.authors.map((author) => (
+          {this.props.book.authors && (this.props.book.authors.map((author) => (
             <div key={author} className="book-authors">{author}</div>
-          ))}
+          )))}
         </div>
       </div>
     );
