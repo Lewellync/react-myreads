@@ -14,17 +14,22 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
+      console.log(books)
       this.setState({ books })
     })
   }
 
   moveBook = (book, shelf) => {
+    console.log("moveBook", book)
+    console.log("moveBook", shelf)
     BooksAPI.update(book, shelf).then(shelves => {
+      // console.log(shelves)
       let newBooks = this.state.books.map((oldBook) => (
-        oldBook.title === book.title ? { ...oldBook, "shelf": shelf } : oldBook
+        oldBook.id === book.id ? { ...oldBook, "shelf": shelf } : oldBook
       ))
       this.setState({ books: newBooks })
     })
+    console.log("moveBook", this.state.books)
   }
 
   render() {

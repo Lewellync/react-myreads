@@ -12,20 +12,29 @@ class Search extends Component {
   }
 
   updateQuery = (query) => {
+    // console.log("Initial", query)
     this.setState({ query })
     if (query) {
-      BooksAPI.search(query).then((books) => {
-        books.error ? this.setState({ books: [] }) : this.setState({ books })
+      BooksAPI.search(query).then((searchResults) => {
+        // console.log("Promise", query)
+        // console.log(searchResults)
+        if (searchResults.error || !this.state.query)
+          this.setState({ books: [] })
+        else
+          this.setState({ books: searchResults })
       })
+    } else {
+      // console.log("Else", query)
+      this.setState({ books: [] })
     }
   }
 
   render() {
-    const { query } = this.state
+    // console.log("Render", this.state.query)
+    // console.log("Render", this.state.books)
 
-    let showingBooks
-    showingBooks = query ? this.state.books : []
-    console.log(showingBooks)
+    let showingBooks = this.state.query ? this.state.books : []
+    // console.log("Render", showingBooks)
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -39,7 +48,7 @@ class Search extends Component {
             <input
               type="text"
               placeholder="Search by title or author"
-              value={query}
+              value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)}
             />
           </div>
