@@ -14,29 +14,47 @@ class BooksApp extends Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      console.log(books)
+      // console.log(books)
       this.setState({ books })
     })
   }
 
   moveBook = (book, shelf) => {
-    console.log("moveBook", book)
-    console.log("moveBook", shelf)
+    // console.log("moveBook", book)
+    // console.log("moveBook", shelf)
     BooksAPI.update(book, shelf).then(shelves => {
       // console.log(shelves)
-      let newBooks = this.state.books.map((oldBook) => (
-        oldBook.id === book.id ? { ...oldBook, "shelf": shelf } : oldBook
-      ))
+      let newBooks = this.state.books
+      book['shelf'] = shelf
+
+      if (newBooks.some(b => b.id === book.id)) {
+        if (shelf === 'none') {
+          // console.log("filter", newBooks)
+          newBooks = newBooks.filter(oldBook => oldBook.id !== book.id)
+        } else {
+          // console.log("map", newBooks)
+          newBooks = newBooks.map((oldBook) => (
+            oldBook.id === book.id ? { ...oldBook, "shelf": shelf } : oldBook
+          ))
+        }
+      } else {
+        if (shelf !== 'none') {
+          newBooks = newBooks.concat(book)
+          // console.log("concat", newBooks)
+        }
+      }
+
       this.setState({ books: newBooks })
     })
-    console.log("moveBook", this.state.books)
+    // console.log("moveBook", this.state.books)
   }
 
   render() {
     return (
       <div className="app">
         <Route exact path="/search" render={() => (
-          <Search 
+          <Search
+            books={this.state.books}
             moveBook={this.moveBook}
           />
         )} />

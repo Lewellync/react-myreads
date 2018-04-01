@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 class Search extends Component {
 
   state = {
-    books: [],
+    searchedBooks: [],
     query: ''
   }
 
@@ -18,10 +18,18 @@ class Search extends Component {
       BooksAPI.search(query).then((searchResults) => {
         // console.log("Promise", query)
         // console.log(searchResults)
+        // console.log(this.props.books)
         if (searchResults.error || !this.state.query)
-          this.setState({ books: [] })
-        else
-          this.setState({ books: searchResults })
+          this.setState({ searchedBooks: [] })
+        else {
+          searchResults = searchResults.map((oldBook) => {
+            // console.log(oldBook)
+            let check = this.props.books.find(b => b.id === oldBook.id)
+            oldBook.shelf = check ? check.shelf : 'none'
+            return oldBook
+          })
+          this.setState({ searchedBooks: searchResults })
+        }
       })
     } else {
       // console.log("Else", query)
@@ -31,9 +39,9 @@ class Search extends Component {
 
   render() {
     // console.log("Render", this.state.query)
-    // console.log("Render", this.state.books)
+    // console.log("Render", this.state.seachedBooks)
 
-    let showingBooks = this.state.query ? this.state.books : []
+    let showingBooks = this.state.query ? this.state.searchedBooks : []
     // console.log("Render", showingBooks)
     return (
       <div className="search-books">
