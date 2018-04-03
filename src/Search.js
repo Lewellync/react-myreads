@@ -61,7 +61,7 @@ class Search extends Component {
               placeholder="Search by title or author"
               value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)}
-              ref={(input) => { this.searchField = input; }} 
+              ref={(input) => { this.searchField = input; }}
             />
           </div>
         </div>
