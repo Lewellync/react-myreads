@@ -33,14 +33,13 @@ class Search extends Component {
       })
     } else {
       // console.log("Else", query)
-      this.setState({ books: [] })
+      this.setState({ searchedBooks: [] })
     }
   }
 
   render() {
     // console.log("Render", this.state.query)
     // console.log("Render", this.state.seachedBooks)
-
     let showingBooks = this.state.query ? this.state.searchedBooks : []
     // console.log("Render", showingBooks)
     return (
@@ -68,6 +67,7 @@ class Search extends Component {
                 <Book
                   book={book}
                   title={book.title}
+                  selected={book.shelf}
                   shelf={book.shelf}
                   authors={book.authors || []}
                   thumbnail={(book.imageLinks && book.imageLinks.thumbnail) || ""}
