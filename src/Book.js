@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
   render() {
-    console.log(this.props)
     return (
       <div>
         <div className="book">
           <div className="book-top">
-            <div className={"book-cover" + (this.props.shelf !== "none" ? " book-selected" : "")} style={{
+            <div className={"book-cover" + (this.props.selected !== "none" ? " book-selected" : "")} style={{
               width: 128, height: 193,
               backgroundImage: `url(${this.props.thumbnail})`
             }}>
@@ -35,7 +34,12 @@ class Book extends Component {
 }
 
 Book.propTypes = {
-
+  selected: PropTypes.string,
+  thumbnail: PropTypes.string,
+  shelf: PropTypes.string,
+  title: PropTypes.string,
+  authors: PropTypes.array,
+  moveBook: PropTypes.func
 };
 
 export default Book;

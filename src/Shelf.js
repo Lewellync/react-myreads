@@ -16,6 +16,7 @@ class Shelf extends Component {
                 <Book
                   book={book}
                   title={book.title}
+                  selected={"none"}
                   shelf={book.shelf}
                   authors={book.authors || []}
                   thumbnail={(book.imageLinks && book.imageLinks.thumbnail) || ""}
@@ -31,7 +32,9 @@ class Shelf extends Component {
 }
 
 Shelf.propTypes = {
-
+  book: PropTypes.object,
+  selected: PropTypes.string,
+  moveBook: PropTypes.func
 };
 
 export default Shelf;

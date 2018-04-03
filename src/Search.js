@@ -11,6 +11,10 @@ class Search extends Component {
     query: ''
   }
 
+  componentDidMount() {
+    this.searchField.focus()
+  }
+
   updateQuery = (query) => {
     // console.log("Initial", query)
     this.setState({ query })
@@ -57,6 +61,7 @@ class Search extends Component {
               placeholder="Search by title or author"
               value={this.state.query}
               onChange={(event) => this.updateQuery(event.target.value)}
+              ref={(input) => { this.searchField = input; }} 
             />
           </div>
         </div>
@@ -83,7 +88,8 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-
+  books: PropTypes.array,
+  moveBook: PropTypes.func
 };
 
 export default Search;
