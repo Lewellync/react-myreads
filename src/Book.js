@@ -4,18 +4,18 @@ import PropTypes from 'prop-types';
 class Book extends Component {
 
   render() {
-    // console.log(this.props)
+    console.log(this.props)
     return (
       <div>
         <div className="book">
           <div className="book-top">
-            <div className="book-cover" style={{
+            <div className={"book-cover" + (this.props.shelf !== "none" ? " book-selected" : "")} style={{
               width: 128, height: 193,
               backgroundImage: `url(${this.props.thumbnail})`
             }}>
             </div>
             <div className="book-shelf-changer">
-              <select value={this.props.shelf ? this.props.shelf : "none"} onChange={(event) => this.props.moveBook(this.props.book, event.target.value)}>
+              <select value={this.props.shelf} onChange={(event) => this.props.moveBook(this.props.book, event.target.value)}>
                 <option value="no" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>

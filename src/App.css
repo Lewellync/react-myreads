@@ -122,6 +122,10 @@ body, .app {
 .book {
   width: 140px;
 }
+.book-selected {
+  border: solid 6px green
+}
+
 .book-title,
 .book-authors {
   font-size: 0.8em;
@@ -160,7 +164,12 @@ body, .app {
   opacity: 0;
   cursor: pointer;
 }
-
+/* .book-shelf-changer select option:checked {
+  font-size: 1.0em; 
+  text-align: center;
+  outline: none;
+  content: "\2713"; 
+} */
 /* book cover */
 
 .book-cover {
